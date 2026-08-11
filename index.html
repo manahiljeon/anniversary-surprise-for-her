@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our 5th Month Special | Forever Yours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Sacramento&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+        /* Floating Background Hearts */
+        .floating-heart {
+            position: absolute;
+            bottom: -20px;
+            color: rgba(255, 182, 193, 0.3);
+            font-size: 20px;
+            animation: rise 6s infinite linear;
+            z-index: 0;
+        }
+        @keyframes rise {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-100vh) scale(1.5); opacity: 0; }
+        }
+
+        header, .nav-tabs, .section, footer {
+            position: relative;
+            z-index: 2;
+        }
+        header {
+            text-align: center;
+            padding: 30px 20px 10px;
+        }
+        header h1 {
+            font-family: 'Sacramento', cursive;
+            font-size: 3.8rem;
+            color: #ffb6c1;
+            text-shadow: 0 0 20px rgba(255,182,193,0.6);
+        }
+        header p {
+            font-size: 1.1rem;
+            color: #d1c4e9;
+            letter-spacing: 1px;
+        }
+
+        /* Music Player Widget */
+        .music-bar {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .music-btn {
+            background: rgba(255, 71, 126, 0.2);
+            border: 1px solid #ff477e;
+            padding: 8px 18px;
+            color: #ffb6c1;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            transition: 0.3s;
+            backdrop-filter: blur(5px);
+        }
+        .music-btn:hover {
+            background: #ff477e;
+            color: #fff;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+            padding: 0 10px;
+        }
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 16px;
+            color: #fff;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: #ff477e;
+            border-color: #ff477e;
+            box-shadow: 0 0 15px rgba(255,71,126,0.6);
+        }
+
+        /* Content Sections */
+        .section {
+            display: none;
+            max-width: 800px;
+            margin: 20px auto 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        .section.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .home-content {
+            text-align: center;
+        }
+        .home-content h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #ff8fab;
+        }
+        .counter-box {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        .count-item {
+            background: rgba(0,0,0,0.3);
+            padding: 15px 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,182,193,0.3);
+        }
+        .count-item span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #ffb6c1;
+        }
+
+        /* Envelopes Section */
+        .envelope-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .envelope {
+            background: linear-gradient(145deg, #ff758c, #ff7eb3);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            color: #fff;
+            font-weight: 600;
+        }
+        .envelope:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(255,117,140,0.5);
+        }
+
+        /* Quiz Section Styles */
+        .quiz-box h3 {
+            color: #ff8fab;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .quiz-question {
+            background: rgba(0,0,0,0.25);
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .quiz-options {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+        .quiz-btn {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            color: #fff;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.9rem;
+        }
+        .quiz-btn:hover {
+            background: #ff477e;
+        }
+        .quiz-feedback {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: #ffb6c1;
+            font-weight: 500;
+        }
+
+        /* Love Meter Widget */
+        .love-meter-box {
+            text-align: center;
+            padding: 10px;
+        }
+        .check-love-btn {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            border: none;
+            padding: 12px 25px;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(255,117,140,0.4);
+            transition: 0.3s;
+            margin-top: 15px;
+        }
+        .check-love-btn:hover {
+            transform: scale(1.05);
+        }
+        #meterResult {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            color: #ffb6c1;
+            font-weight: 600;
+        }
+
+        /* Modal Popup */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .modal-content {
+            background: #24243e;
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid #ff758c;
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px; right: 15px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #ff758c;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        footer span {
+            color: #ff758c;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Background Audio Link (Working Stream) -->
+    <audio id="bgMusic" loop>
+        <source src="Love.mp3" type="audio/mpeg">
+    </audio>
+
+    <header>
+        <h1>Happy 5th Month Anniversary Wifey! 🤍</h1>
+        <p>A little universe built just for you</p>
+    </header>
+
+    <div class="music-bar">
+        <button class="music-btn" onclick="toggleMusic()">🎵 Play Romantic Music</button>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="tab-btn active" onclick="switchTab('home')">Home</button>
+        <button class="tab-btn" onclick="switchTab('timeline')">Our Journey</button>
+        <button class="tab-btn" onclick="switchTab('envelopes')">Secret Envelopes</button>
+        <button class="tab-btn" onclick="switchTab('quiz')">Love Quiz 🧠</button>
+        <button class="tab-btn" onclick="switchTab('meter')">Love Meter 💕</button>
+    </div>
+
+    <!-- HOME SECTION -->
+    <div id="home" class="section active">
+        <div class="home-content">
+            <h2>5 Beautiful Months Together ✨</h2>
+            <p>Every single day with you feels like absolute magic. Thank you for being my peace my ultimate happiness and my favorite notification.</p>
+            <div class="counter-box">
+                <div class="count-item"><span>5</span>Months</div>
+                <div class="count-item"><span>150+</span>Days</div>
+                <div class="count-item"><span>∞</span>Love</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TIMELINE SECTION -->
+    <div id="timeline" class="section">
+        <h2 style="color: #ff8fab; text-align: center; margin-bottom: 20px;">Our 5-Month Milestones</h2>
+        <p style="text-align: center; line-height: 1.8; color: #d1c4e9;">
+            From our very first chat to completing 5 amazing months every moment has been pure gold You make my life brighter and I cherish every second we talk laugh and share our dreams together Here’s to a wonderful lifetime more! 🥂
+        </p>
+    </div>
+
+    <!-- ENVELOPES SECTION -->
+    <div id="envelopes" class="section">
+        <h2 style="color: #ff8fab; text-align: center; margin-bottom: 10px;">Open When...</h2>
+        <p style="text-align: center; margin-bottom: 20px; font-size: 0.9rem; color: #d1c4e9;">Tap an envelope to read my heart out!</p>
+        <div class="envelope-grid">
+            <div class="envelope" onclick="openMessage('You need a reminder of how much I love you: You are my absolute world my home and my favorite human ever! 🤍')">💌 Open when you miss me</div>
+            <div class="envelope" onclick="openMessage('Feeling low? Just remember: No matter how tough things get, I am always right here backing you up, forever! ✨')">💌 Open when you\'re sad</div>
+            <div class="envelope" onclick="openMessage('Thinking about us? Look at how far we’ve come in 5 months—and this is just chapter one! 🌹')">💌 Open on our 5th month</div>
+        </div>
+    </div>
+
+    <!-- EXPANDED QUIZ SECTION -->
+    <div id="quiz" class="section">
+        <div class="quiz-box">
+            <h3>How well do you know us? 💕</h3>
+            
+            <div class="quiz-question">
+                <p>1. What makes me smile the most?</p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkAnswer(1, false)">Random reels</button>
+                    <button class="quiz-btn" onclick="checkAnswer(1, true)">Your cute voice / Talking to you</button>
+                </div>
+                <div id="feedback1" class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <p>2. How long have we been together today?</p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkAnswer(2, true)">5 magical months! ✨</button>
+                    <button class="quiz-btn" onclick="checkAnswer(2, false)">5 years</button>
+                </div>
+                <div id="feedback2" class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <p>3. Who is the cutest person in this relationship?</p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkAnswer(3, true)">Obviously, MY WIFEY! 🤍</button>
+                    <button class="quiz-btn" onclick="checkAnswer(3, false)">No idea</button>
+                </div>
+                <div id="feedback3" class="quiz-feedback"></div>
+            </div>
+
+            <div class="quiz-question">
+                <p>4. What is our ultimate future goal?</p>
+                <div class="quiz-options">
+                    <button class="quiz-btn" onclick="checkAnswer(4, true)">To stay together forever & always ✨</button>
+                    <button class="quiz-btn" onclick="checkAnswer(4, false)">Nothing specific</button>
+                </div>
+                <div id="feedback4" class="quiz-feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOVE METER SECTION -->
+    <div id="meter" class="section">
+        <div class="love-meter-box">
+            <h2 style="color: #ff8fab; margin-bottom: 15px;">Official Love & Soulmate Meter 💖</h2>
+            <p style="color: #d1c4e9; font-size: 0.95rem;">Click the button below to calculate our connection level!</p>
+            <button class="check-love-btn" onclick="calculateLove()">Calculate Love ✨</button>
+            <div id="meterResult"></div>
+        </div>
+    </div>
+
+    <!-- MODAL POPUP -->
+    <div id="msgModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeMessage()">&times;</span>
+            <p id="modalText" style="margin-top: 20px; font-size: 1.1rem; line-height: 1.6; color: #fff;"></p>
+        </div>
+    </div>
+
+    <footer>
+        Created with love by <span>Manahil</span> | Custom Web Solutions
+    </footer>
+
+    <script>
+        // Floating Hearts Generator
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 6000);
+        }
+        setInterval(createHeart, 500);
+
+        // Tab Switcher
+        function switchTab(tabId) {
+            document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Modal Controls
+        function openMessage(text) {
+            document.getElementById('modalText').innerText = text;
+            document.getElementById('msgModal').style.display = 'flex';
+        }
+        function closeMessage() {
+            document.getElementById('msgModal').style.display = 'none';
+        }
+
+        // Music Toggle with Working Link
+        let isPlaying = false;
+        function toggleMusic() {
+            const music = document.getElementById('bgMusic');
+            const btn = document.querySelector('.music-btn');
+            if (isPlaying) {
+                music.pause();
+                btn.innerText = '🎵 Play Romantic Music';
+                isPlaying = false;
+            } else {
+                music.play().then(() => {
+                    btn.innerText = '⏸ Pause Music';
+                    isPlaying = true;
+                }).catch(e => {
+                    alert('Please click anywhere on the page first, then click Play!');
+                });
+            }
+        }
+
+        // Quiz Logic
+        function checkAnswer(qNum, isCorrect) {
+            const feedback = document.getElementById('feedback' + qNum);
+            if (isCorrect) {
+                feedback.innerHTML = "✨ Yay! Correct! You know us best! 🤍";
+            } else {
+                feedback.innerHTML = "❌ Hehe wrong! Try again! 😉";
+            }
+        }
+
+        // Love Meter Logic
+        function calculateLove() {
+            const result = document.getElementById('meterResult');
+            result.innerHTML = "Calculating connection... ⏳";
+            setTimeout(() => {
+                result.innerHTML = "100% Certified Soulmates! Made for each other forever! 🤍✨";
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
